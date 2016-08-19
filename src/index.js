@@ -17,13 +17,13 @@ if (module.hot) {
 }
 
 //Create a component. This component should produce some HTML
-const App = function() {
+const Application = function() {
   return <div>Moi!!!!</div>;
 }
 
 //Take this component's generated HTML and put it on the page (in the DOM)
 ReactDOM.render(
   //<Provider store={store}>
-    <App />
+    <Application />
   //</Provider>
   , document.querySelector('.container'));
