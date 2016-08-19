@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
 import App from './components/App';
+import SearchBar from './components/search_bar';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
@@ -18,7 +19,9 @@ if (module.hot) {
 
 //Create a component. This component should produce some HTML
 const Application = function() {
-  return <div>Moi!!!!</div>;
+  return <div>Moi!!!!
+    <SearchBar />
+  </div>;
 }
 
 //Take this component's generated HTML and put it on the page (in the DOM)
