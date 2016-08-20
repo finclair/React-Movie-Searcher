@@ -1,4 +1,4 @@
-import React from 'react'; //get the React from node_modules
+import React, { Component } from 'react'; //get the React from node_modules
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -19,11 +19,18 @@ if (module.hot) {
 }
 
 //Create a component. This component should produce some HTML
-const Application = function() {
-  return <div>Moi!!!!
-    <SearchBar />
-    <MovieList />
-  </div>;
+class Application extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>Moi!!!!
+        <SearchBar />
+        <MovieList />
+    </div>
+    );
+  }
 }
 
 //Take this component's generated HTML and put it on the page (in the DOM)
