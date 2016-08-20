@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import App from './components/App';
 import SearchBar from './components/search_bar';
+import MovieList from './components/movie_list';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
@@ -21,6 +22,7 @@ if (module.hot) {
 const Application = function() {
   return <div>Moi!!!!
     <SearchBar />
+    <MovieList />
   </div>;
 }
 
