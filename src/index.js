@@ -53,7 +53,7 @@ class Application extends Component {
 
   render() {
     return (
-      <div>Moi!!!!
+      <div>
         <SearchBar />
         <MovieList movies={this.state.movies} />
     </div>
