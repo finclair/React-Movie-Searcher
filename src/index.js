@@ -11,6 +11,9 @@ import reducers from './reducers';
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const store = createStoreWithMiddleware(reducers);
 
+const url = 'http://www.omdbapi.com/?s=lol';
+
+
 if (module.hot) {
   module.hot.accept('./reducers', () => {
     const nextReducer = require('./reducers/index').default;
@@ -18,16 +21,41 @@ if (module.hot) {
   });
 }
 
+
 //Create a component. This component should produce some HTML
 class Application extends Component {
   constructor(props) {
     super(props);
+
+    this.state = { movies: [] }; //the state of movies starts as an empty array
+
   }
+
+  componentDidMount() {
+    this.fetchOMDbData(url, (movies) => {
+      console.log(movies.Search);
+
+      this.setState({ movies: movies.Search });
+    });
+  }
+
+  fetchOMDbData(url, callback) {
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = () => {
+      if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+        var response = JSON.parse(httpRequest.responseText);
+        callback(response);
+      }
+    };
+    httpRequest.open('GET', url);
+    httpRequest.send();
+  }
+
   render() {
     return (
       <div>Moi!!!!
         <SearchBar />
-        <MovieList />
+        <MovieList movies={this.state.movies} />
     </div>
     );
   }
