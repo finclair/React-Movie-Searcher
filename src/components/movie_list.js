@@ -1,4 +1,5 @@
 import React from 'react';
+import MovieListItem from './movie_item';
 
 const MovieList = (props) => {
     console.log(props);
@@ -7,11 +8,13 @@ const MovieList = (props) => {
         return null;
     }
 
+    const movieItems = props.movies.map((movie) => {
+        return <MovieListItem movie={movie} />
+    });
+
     return (
-      <ul className="col-md-4 list-group">
-
-
-          {props.movies[0].Title}
+      <ul className="col-md-12 list-group">
+          {movieItems}
       </ul>
     );
 };
