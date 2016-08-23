@@ -8,13 +8,14 @@ const MovieList = (props) => {
     }
 
     const movieItems = props.movies.map((movie) => {
+
         return <MovieListItem key={movie.imdbID} movie={movie} />
     });
 
     return (
-      <ul className="col-md-12 list-group">
+      <div className="col-md-12 list-group">
           {movieItems}
-      </ul>
+      </div>
     );
 };
 
