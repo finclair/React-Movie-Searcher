@@ -66,4 +66,4 @@ ReactDOM.render(
   //<Provider store={store}>
     <Application />
   //</Provider>
-  , document.querySelector('.container'));
+  , document.querySelector('.content'));
