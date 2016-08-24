@@ -11,11 +11,11 @@ class SearchBar extends Component {
     render() {
         return (
         <div className="well">
-            <form id="search">
+            <form className="search">
                 <input onChange = {this.onInputChange} />
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">
-                        <span class="glyphicon glyphicon-search"></span> Search
+                <span className="input-group-btn">
+                    <button className="btn btn-primary" type="submit">
+                        <span className="glyphicon glyphicon-search"></span> Search
                     </button>
                 </span>
             </form>
