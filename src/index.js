@@ -65,8 +65,10 @@ class Application extends Component {
   render() {
     return (
       <div>
-        <SearchBar onSearching={this.prepareSearchWord} />
-        <MovieList movies={this.state.movies} />
+        <div className="col-md-7">
+          <SearchBar onSearching={this.prepareSearchWord} />
+          <MovieList movies={this.state.movies} />
+        </div>
     </div>
     );
   }
