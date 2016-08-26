@@ -2,6 +2,10 @@ import React from 'react';
 
 const MovieInfo = (props) => {
 
+    if (!props.movie) {
+        return <div>Loading..</div>
+    }
+    
     console.log(props.movie);
     const movie = props.movie;
 

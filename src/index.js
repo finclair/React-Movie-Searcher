@@ -60,6 +60,7 @@ class Application extends Component {
         <div className="col-md-7">
           <SearchBar onSearching={this.prepareSearchWord} />
           <MovieList movies={this.state.movies} />
+          <MovieInfo movie={this.state.movies[0]} />
         </div>
     </div>
     );
