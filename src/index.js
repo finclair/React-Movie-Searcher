@@ -4,8 +4,11 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
 import App from './components/App';
+
 import SearchBar from './components/search_bar';
 import MovieList from './components/movie_list';
+import MovieInfo from './components/movie_info';
+
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
