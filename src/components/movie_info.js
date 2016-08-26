@@ -3,7 +3,7 @@ import React from 'react';
 const MovieInfo = (props) => {
 
     if (!props.movie) {
-        return <div>Loading..</div>
+        return null;
     }
 
     console.log(props.movie);
