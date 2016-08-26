@@ -32,7 +32,7 @@ class Application extends Component {
     this.state = { movies: [] }; //the state of movies starts as an empty array
 
   }
-  
+
   fetchOMDbData(url, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = () => {
@@ -46,7 +46,7 @@ class Application extends Component {
   }
 
   prepareSearchWord(input) {
-    const complete = url.concat(input);
+    const complete = `${url}${input}`;
     this.fetchOMDbData(complete, (movies) => {
     this.setState({movies: movies.Search});
     }
