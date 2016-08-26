@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const url = 'http://www.omdbapi.com/?s=';
+
 class SearchBar extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +32,7 @@ class SearchBar extends Component {
 
     onFormSubmit(event) {
         event.preventDefault();
-        this.props.onSearching(this.state.input);
+        this.props.onSearching(`${url}${this.state.input}`);
     }
 }
 export default SearchBar;

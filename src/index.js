@@ -11,8 +11,6 @@ import reducers from './reducers';
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const store = createStoreWithMiddleware(reducers);
 
-const url = 'http://www.omdbapi.com/?s=';
-
 
 if (module.hot) {
   module.hot.accept('./reducers', () => {
@@ -46,8 +44,8 @@ class Application extends Component {
   }
 
   prepareSearchWord(input) {
-    const complete = `${url}${input}`;
-    this.fetchOMDbData(complete, (movies) => {
+
+    this.fetchOMDbData(input, (movies) => {
     this.setState({movies: movies.Search});
     }
     );
