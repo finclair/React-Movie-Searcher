@@ -27,7 +27,7 @@ class Application extends Component {
   constructor(props) {
     super(props);
 
-    this.test = this.test.bind(this)
+    this.prepareSearchWord = this.prepareSearchWord.bind(this)
 
     this.state = { movies: [] }; //the state of movies starts as an empty array
 
@@ -60,7 +60,6 @@ class Application extends Component {
     this.setState({movies: movies.Search});
     }
     );
-
   }
 
   render() {
