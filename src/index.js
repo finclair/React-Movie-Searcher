@@ -11,7 +11,7 @@ import reducers from './reducers';
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const store = createStoreWithMiddleware(reducers);
 
-const url = 'http://www.omdbapi.com/?s=lol';
+const url = 'http://www.omdbapi.com/?s=';
 
 
 if (module.hot) {
@@ -27,6 +27,8 @@ class Application extends Component {
   constructor(props) {
     super(props);
 
+    this.test = this.test.bind(this)
+
     this.state = { movies: [] }; //the state of movies starts as an empty array
 
   }
@@ -36,7 +38,8 @@ class Application extends Component {
       console.log(movies.Search);
 
       this.setState({ movies: movies.Search });
-    });
+    }
+    );
   }
 
   fetchOMDbData(url, callback) {
@@ -51,10 +54,19 @@ class Application extends Component {
     httpRequest.send();
   }
 
+  prepareSearchWord(input) {
+    const complete = url.concat(input);
+    this.fetchOMDbData(complete, (movies) => {
+    this.setState({movies: movies.Search});
+    }
+    );
+
+  }
+
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearching={this.prepareSearchWord} />
         <MovieList movies={this.state.movies} />
     </div>
     );
