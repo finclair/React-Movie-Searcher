@@ -32,16 +32,7 @@ class Application extends Component {
     this.state = { movies: [] }; //the state of movies starts as an empty array
 
   }
-
-  componentDidMount() {
-    this.fetchOMDbData(url, (movies) => {
-      console.log(movies.Search);
-
-      this.setState({ movies: movies.Search });
-    }
-    );
-  }
-
+  
   fetchOMDbData(url, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = () => {
