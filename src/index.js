@@ -49,18 +49,29 @@ class Application extends Component {
   prepareSearchWord(input) {
 
     this.fetchOMDbData(input, (movies) => {
-    this.setState({movies: movies.Search});
+      this.setState({movies: movies.Search});
+      this.setState({selectedMovie: movies.Search[0]});
     }
     );
   }
+  doDetailedSearch(input) {
+    this.fetchOMDbData(input, (selectedMovie) => {
+      this.setState({selectedMovie: selectedMovie});
+    }
 
+    );
+
+  }
   render() {
     return (
       <div>
         <div className="col-md-7">
           <SearchBar onSearching={this.prepareSearchWord} />
-          <MovieList movies={this.state.movies} />
-          <MovieInfo movie={this.state.movies[0]} />
+          <MovieList
+              movies={this.state.movies}
+              onMovieClick={this.doDetailedSearch }
+          />
+          <MovieInfo movie={this.state.selectedMovie} />
         </div>
     </div>
     );
