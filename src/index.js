@@ -29,8 +29,9 @@ class Application extends Component {
     super(props);
 
     this.prepareSearchWord = this.prepareSearchWord.bind(this)
+    this.doDetailedSearch = this.doDetailedSearch.bind(this)
 
-    this.state = { movies: [] }; //the state of movies starts as an empty array
+    this.state = { movies: [] };
 
   }
 
