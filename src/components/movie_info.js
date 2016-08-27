@@ -15,6 +15,13 @@ const MovieInfo = (props) => {
                 <article>
                     <h2 className="title-of-movie">{movie.Title}</h2>
                     <h4 className="year-of-movie">{movie.Year}</h4>
+                    <p className="rate-of-movie">{movie.Rated}</p>
+                    <p className="director-of-movie">{movie.Director}</p>
+                    <p className="actors-of-movie">{movie.Actors}</p>
+                    <p><span className="imdb-rate-of-movie">{movie.imdbRating}</span></p>
+                    <p className="votes-of-movie">{movie.imdbVotes}</p>
+                    <p className="oscars-of-movie">{movie.Awards}</p>
+                    <p className="plot-of-movie">{movie.Plot}</p>
                 </article>
             </div>
             <img className="movie-image" src={movie.Poster}/>
