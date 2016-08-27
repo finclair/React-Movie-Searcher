@@ -6,7 +6,11 @@ const MovieListItem = (props) => {
     
     //console.log('moii',movie);
 
-    return <a href="#" className="list-group-item" >{movie.Title}<span className="badge">{movie.Year}</span></a>;
+    return (
+    <a href="#" className="list-group-item" >{movie.Title}
+        <span className="badge">{movie.Year}</span>
+    </a>
+    );
 };
 
 export default MovieListItem;
