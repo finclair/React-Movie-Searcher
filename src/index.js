@@ -66,13 +66,16 @@ class Application extends Component {
   render() {
     return (
       <div>
+        <div className="row">
         <div className="col-md-7">
           <SearchBar onSearching={this.prepareSearchWord} />
           <MovieList
               movies={this.state.movies}
               onMovieClick={this.doDetailedSearch }
           />
+        </div>
           <MovieInfo movie={this.state.selectedMovie} />
+
         </div>
     </div>
     );
