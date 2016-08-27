@@ -2,13 +2,21 @@ import React from 'react';
 import MovieListItem from './movie_item';
 
 const MovieList = (props) => {
+    
+    //console.log(props.onMovieClick);
 
     if (!props.movies.length) {
         return null;
     }
 
     const movieItems = props.movies.map((movie) => {
-        return <MovieListItem key={movie.imdbID} movie={movie} />
+        return (
+            <MovieListItem
+                onMovieClick={props.onMovieClick}
+                key={movie.imdbID}
+                movie={movie}
+            />
+        );
     });
 
     return (
