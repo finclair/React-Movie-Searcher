@@ -6,11 +6,7 @@ const MovieInfo = (props) => {
         return null;
     }
 
-    console.log(props.movie);
     const movie = props.movie;
-
-    const movieID = movie.imdbID;
-    //ToDo: should the baseurl http://www.omdbapi.com/?t= be here?
 
     return (
 
