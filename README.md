@@ -1,4 +1,3 @@
-# Playlistify
 
 ### How to setup environment
 
