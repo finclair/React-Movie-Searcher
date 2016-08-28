@@ -2,10 +2,8 @@ import React from 'react';
 import MovieListItem from './movie_item';
 
 const MovieList = (props) => {
-    
-    //console.log(props.onMovieClick);
 
-    if (!props.movies.length) {
+    if (!props.movies || !props.movies.length) {
         return null;
     }
 
