@@ -6,16 +6,14 @@ import SearchBar from './search_bar';
 import MovieList from './movie_list';
 import MovieInfo from './movie_info';
 
-//Create a component. This component should produce some HTML
 class Application extends Component {
   constructor(props) {
     super(props);
 
-    this.prepareSearchWord = this.prepareSearchWord.bind(this)
-    this.doDetailedSearch = this.doDetailedSearch.bind(this)
+    this.prepareSearchWord = this.prepareSearchWord.bind(this);
+    this.doDetailedSearch = this.doDetailedSearch.bind(this);
 
     this.state = { movies: [] };
-
   }
 
   fetchOMDbData(url, callback) {
@@ -31,36 +29,34 @@ class Application extends Component {
   }
 
   prepareSearchWord(input) {
-
     this.fetchOMDbData(input, (movies) => {
-          this.setState({movies: movies.Search});
-          this.setState({selectedMovie: movies.Search[0]});
-        }
-    );
+      this.setState({movies: movies.Search});
+      this.setState({selectedMovie: movies.Search[0]});
+    });
   }
+
   doDetailedSearch(input) {
     this.fetchOMDbData(input, (selectedMovie) => {
-          this.setState({selectedMovie: selectedMovie});
-        }
-
-    );
-
+      this.setState({selectedMovie: selectedMovie});
+    });
   }
+
   render() {
     return (
-        <div>
-          <div className="row">
-            <div className="col-md-7">
-              <SearchBar onSearching={this.prepareSearchWord} />
-              <MovieList
-                  movies={this.state.movies}
-                  onMovieClick={this.doDetailedSearch }
-              />
-            </div>
-            <MovieInfo movie={this.state.selectedMovie} />
+      <div>
+        <div className="row">
+          <div className="col-md-7">
+            <SearchBar onSearching={this.prepareSearchWord} />
+            <MovieList
+              movies={this.state.movies}
+              onMovieClick={this.doDetailedSearch }
+            />
           </div>
+          <MovieInfo movie={this.state.selectedMovie} />
         </div>
+      </div>
     );
   }
 }
+
 export default Application;
