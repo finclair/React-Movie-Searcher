@@ -43,15 +43,17 @@ class Application extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-7">
-          <SearchBar onSearching={this.prepareSearchWord} />
-          <MovieList
-            movies={this.state.movies}
-            onMovieClick={this.doDetailedSearch }
-          />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-7">
+            <SearchBar onSearching={this.prepareSearchWord} />
+            <MovieList
+              movies={this.state.movies}
+              onMovieClick={this.doDetailedSearch }
+            />
+          </div>
+          <MovieInfo movie={this.state.selectedMovie} />
         </div>
-        <MovieInfo movie={this.state.selectedMovie} />
       </div>
     );
   }
