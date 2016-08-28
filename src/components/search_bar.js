@@ -15,12 +15,18 @@ class SearchBar extends Component {
         return (
             <div className="well">
                 <form className="search" onSubmit={this.onFormSubmit} >
-                    <input value={this.state.input} onChange={this.onInputChange}/>
-                    <span className="input-group-btn">
-                        <button className="btn btn-primary" type="submit">
-                            <span className="glyphicon glyphicon-search" /> Search
-                        </button>
-                    </span>
+                    <div className="input-group">
+                        <input
+                            className="form-control" value={this.state.input}
+                            onChange={this.onInputChange}
+                            placeholder="Search for movies..."
+                        />
+                        <span className="input-group-btn">
+                            <button className="btn btn-primary" type="submit">
+                                <span className="glyphicon glyphicon-search" /> Search
+                            </button>
+                        </span>
+                    </div>
                 </form>
             </div>
         );
