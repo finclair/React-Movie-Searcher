@@ -31,7 +31,6 @@ class Application extends Component {
   prepareSearchWord(input) {
     this.fetchOMDbData(input, (movies) => {
       this.setState({movies: movies.Search});
-      this.setState({selectedMovie: movies.Search[0]});
     });
   }
 
