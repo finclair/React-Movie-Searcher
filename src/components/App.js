@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+require('bootstrap/dist/css/bootstrap.min.css');
 require('../../style/style.css');
 
 import SearchBar from './search_bar';
