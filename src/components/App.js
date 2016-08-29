@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 require('bootstrap/dist/css/bootstrap.min.css');
 require('../../style/style.css');
 
+import Nav from './Nav'
 import SearchBar from './search_bar';
 import LoadingBar from './LoadingBar';
 import MovieList from './movie_list';
@@ -49,17 +50,21 @@ class Application extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-7">
-            <SearchBar onSearching={this.prepareSearchWord} />
-            {this.state.isLoading && <LoadingBar/>}
-            <MovieList
-              movies={this.state.movies}
-              onMovieClick={this.doDetailedSearch }
-            />
+      <div>
+        <Nav />
+        <div className="container">
+          <div className="row">
+            <div className="col-md-7">
+
+              <SearchBar onSearching={this.prepareSearchWord} />
+              {this.state.isLoading && <LoadingBar/>}
+              <MovieList
+                movies={this.state.movies}
+                onMovieClick={this.doDetailedSearch }
+              />
+            </div>
+            <MovieInfo movie={this.state.selectedMovie} />
           </div>
-          <MovieInfo movie={this.state.selectedMovie} />
         </div>
       </div>
     );
