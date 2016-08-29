@@ -4,6 +4,7 @@ require('bootstrap/dist/css/bootstrap.min.css');
 require('../../style/style.css');
 
 import SearchBar from './search_bar';
+import LoadingBar from './LoadingBar';
 import MovieList from './movie_list';
 import MovieInfo from './movie_info';
 
@@ -14,13 +15,18 @@ class Application extends Component {
     this.prepareSearchWord = this.prepareSearchWord.bind(this);
     this.doDetailedSearch = this.doDetailedSearch.bind(this);
 
-    this.state = { movies: [] };
+    this.state = {
+      movies: [],
+      isLoading: false
+    };
   }
 
   fetchOMDbData(url, callback) {
+    this.setState({isLoading: true});
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = () => {
       if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+        this.setState({isLoading: false});
         var response = JSON.parse(httpRequest.responseText);
         callback(response);
       }
@@ -47,6 +53,7 @@ class Application extends Component {
         <div className="row">
           <div className="col-md-7">
             <SearchBar onSearching={this.prepareSearchWord} />
+            {this.state.isLoading && <LoadingBar/>}
             <MovieList
               movies={this.state.movies}
               onMovieClick={this.doDetailedSearch }
