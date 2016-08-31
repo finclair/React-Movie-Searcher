@@ -1,5 +1,5 @@
 import React from 'react';
-import MovieListItem from './movie_item';
+import MovieListItem from './MovieItem';
 
 const MovieList = (props) => {
 

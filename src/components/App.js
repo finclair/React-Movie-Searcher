@@ -5,10 +5,11 @@ require('font-awesome/css/font-awesome.min.css');
 require('../../style/style.css');
 
 import Nav from './Nav'
-import SearchBar from './search_bar';
+import SearchBar from './SearchBar';
 import LoadingBar from './LoadingBar';
-import MovieList from './movie_list';
-import MovieInfo from './movie_info';
+import MovieList from './MovieList';
+import MovieItem from './MovieItem';
+import MovieInfo from './MovieInfo';
 
 class Application extends Component {
   constructor(props) {
