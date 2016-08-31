@@ -46,9 +46,12 @@ class Application extends Component {
     });
   }
 
-  doDetailedSearch(params) {
-    
-    this.fetchOMDbData(input, (selectedMovie) => {
+  doDetailedSearch(movie) {
+
+    const url = 'http://www.omdbapi.com/?plot=full&i=';
+    const completeUrl = `${url}${movie.imdbID}`;
+
+    this.fetchOMDbData(completeUrl, (selectedMovie) => {
       this.setState({selectedMovie: selectedMovie});
     });
   }
@@ -60,7 +63,6 @@ class Application extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-7">
-
               <SearchBar onSearching={this.prepareSearchWord} />
               {this.state.isLoading && <LoadingBar/>}
               <MovieList
