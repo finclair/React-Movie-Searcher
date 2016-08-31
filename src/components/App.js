@@ -10,6 +10,7 @@ import LoadingBar from './LoadingBar';
 import MovieList from './MovieList';
 import MovieItem from './MovieItem';
 import MovieInfo from './MovieInfo';
+import Pager from './Pager';
 
 class Application extends Component {
   constructor(props) {
@@ -70,6 +71,7 @@ class Application extends Component {
                 movies={this.state.movies}
                 onMovieClick={this.doDetailedSearch }
               />
+              <Pager />
             </div>
             <MovieInfo movie={this.state.selectedMovie} />
           </div>
