@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 require('bootstrap/dist/css/bootstrap.min.css');
+require('font-awesome/css/font-awesome.min.css');
 require('../../style/style.css');
 
 import Nav from './Nav'
@@ -36,13 +37,17 @@ class Application extends Component {
     httpRequest.send();
   }
 
-  prepareSearchWord(input) {
-    this.fetchOMDbData(input, (movies) => {
+  prepareSearchWord(params) {
+    const url = 'http://www.omdbapi.com/?s=';
+    const typePart = '&type=';
+    const completeURL = (`${url}${params.input}${typePart}${params.searchType}`);
+    this.fetchOMDbData(completeURL, (movies) => {
       this.setState({movies: movies.Search});
     });
   }
 
-  doDetailedSearch(input) {
+  doDetailedSearch(params) {
+    
     this.fetchOMDbData(input, (selectedMovie) => {
       this.setState({selectedMovie: selectedMovie});
     });

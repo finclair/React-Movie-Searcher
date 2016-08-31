@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-const url = 'http://www.omdbapi.com/?s=';
-const typePart = '&type=';
 
 
 class SearchBar extends Component {
@@ -48,7 +46,7 @@ class SearchBar extends Component {
 
     onFormSubmit(event) {
         event.preventDefault();
-        this.props.onSearching(`${url}${this.state.input}${typePart}${this.state.searchType}`);
+        this.props.onSearching(this.state);
     }
 
     onSearchTypeChange(event) {
