@@ -64,7 +64,6 @@ class Application extends Component {
 
   changePage(pageNumber) {
     this.setState({selectedPage: pageNumber});
-    console.log(this.state.selectedPage, 'on');
     const url = 'http://www.omdbapi.com/?s=';
     const textInput = this.state.textInput;
     const typePart = '&type=';
