@@ -23,7 +23,7 @@ class Application extends Component {
     this.state = {
       movies: [],
       isLoading: false,
-      selectedPage: '1',
+      selectedPage: 1,
       textInput: ''
     };
   }
@@ -42,19 +42,21 @@ class Application extends Component {
     httpRequest.send();
   }
 
-  prepareSearchWord(params) {
+  prepareSearchWord(searchCriterias) {
     const url = 'http://www.omdbapi.com/?s=';
     const typePart = '&type=';
     const pagePart = '&page=';
-    this.setState({textInput: params.input});
-    const completeURL = (`${url}${params.input}${typePart}${params.searchType}${pagePart}${this.state.selectedPage}`);
+    const completeURL = `${url}${searchCriterias.input}${typePart}${searchCriterias.searchType}${pagePart}1`;
     this.fetchOMDbData(completeURL, (movies) => {
-      this.setState({movies: movies.Search});
+      this.setState({
+        movies: movies.Search,
+        selectedPage: 1,
+        textInput: searchCriterias.input
+      });
     });
   }
 
   doDetailedSearch(movie) {
-
     const url = 'http://www.omdbapi.com/?plot=full&i=';
     const completeUrl = `${url}${movie.imdbID}`;
     this.fetchOMDbData(completeUrl, (selectedMovie) => {
@@ -62,16 +64,17 @@ class Application extends Component {
     });
   }
 
-  changePage(pageNumber) {
-    this.setState({selectedPage: pageNumber});
+  changePage() {
     const url = 'http://www.omdbapi.com/?s=';
     const textInput = this.state.textInput;
     const typePart = '&type=';
     const pagePart = '&page=';
-    const completeURL = (`${url}${textInput}${typePart}${'movie'}${pagePart}${pageNumber}`);
+    const completeURL = `${url}${textInput}${typePart}${'movie'}${pagePart}${this.state.selectedPage + 1}`;
     this.fetchOMDbData(completeURL, (movies) => {
-
-      this.setState({movies: movies.Search});
+      this.setState({
+        movies: movies.Search,
+        selectedPage: this.state.selectedPage + 1
+      });
     });
   }
 
@@ -88,10 +91,7 @@ class Application extends Component {
                 movies={this.state.movies}
                 onMovieClick={this.doDetailedSearch }
               />
-              <Pager
-                selectedPage={this.state.selectedPage}
-                onNextButtonClick={this.changePage}
-              />
+              <Pager onNextButtonClick={this.changePage} />
             </div>
             <MovieInfo movie={this.state.selectedMovie} />
           </div>
