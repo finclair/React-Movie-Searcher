@@ -18,10 +18,13 @@ class Application extends Component {
 
     this.prepareSearchWord = this.prepareSearchWord.bind(this);
     this.doDetailedSearch = this.doDetailedSearch.bind(this);
+    this.changePage = this.changePage.bind(this);
 
     this.state = {
       movies: [],
-      isLoading: false
+      isLoading: false,
+      selectedPage: '1',
+      textInput: ''
     };
   }
 
@@ -42,7 +45,9 @@ class Application extends Component {
   prepareSearchWord(params) {
     const url = 'http://www.omdbapi.com/?s=';
     const typePart = '&type=';
-    const completeURL = (`${url}${params.input}${typePart}${params.searchType}`);
+    const pagePart = '&page=';
+    this.setState({textInput: params.input});
+    const completeURL = (`${url}${params.input}${typePart}${params.searchType}${pagePart}${this.state.selectedPage}`);
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({movies: movies.Search});
     });
@@ -52,9 +57,22 @@ class Application extends Component {
 
     const url = 'http://www.omdbapi.com/?plot=full&i=';
     const completeUrl = `${url}${movie.imdbID}`;
-
     this.fetchOMDbData(completeUrl, (selectedMovie) => {
       this.setState({selectedMovie: selectedMovie});
+    });
+  }
+
+  changePage(pageNumber) {
+    this.setState({selectedPage: pageNumber});
+    console.log(this.state.selectedPage, 'on');
+    const url = 'http://www.omdbapi.com/?s=';
+    const textInput = this.state.textInput;
+    const typePart = '&type=';
+    const pagePart = '&page=';
+    const completeURL = (`${url}${textInput}${typePart}${'movie'}${pagePart}${pageNumber}`);
+    this.fetchOMDbData(completeURL, (movies) => {
+
+      this.setState({movies: movies.Search});
     });
   }
 
@@ -71,7 +89,10 @@ class Application extends Component {
                 movies={this.state.movies}
                 onMovieClick={this.doDetailedSearch }
               />
-              <Pager />
+              <Pager
+                selectedPage={this.state.selectedPage}
+                onNextButtonClick={this.changePage}
+              />
             </div>
             <MovieInfo movie={this.state.selectedMovie} />
           </div>
