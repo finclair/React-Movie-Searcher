@@ -5,12 +5,10 @@ const Pager = (props) => {
 
     return (
         <div>
-            <button
-                className="btn btn-default"
-                type="button"
-                onClick={props.onNextButtonClick}>
-                Next 10 Titles
-            </button>
+            <ul className="pager">
+                
+                <li><a href="#" onClick={props.onNextButtonClick}>Next 10 titles</a></li>
+            </ul>
         </div>
     );
 }
