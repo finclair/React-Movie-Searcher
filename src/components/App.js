@@ -16,10 +16,10 @@ class Application extends Component {
   constructor(props) {
     super(props);
 
-    this.prepareSearchWord = this.prepareSearchWord.bind(this);
+    this.searchMovies = this.searchMovies.bind(this);
     this.doDetailedSearch = this.doDetailedSearch.bind(this);
-    this.changePage = this.changePage.bind(this);
-    this.changeToPreviousPage = this.changeToPreviousPage.bind(this);
+    this.browseNextPage = this.browseNextPage.bind(this);
+    this.browsePreviousPage = this.browsePreviousPage.bind(this);
 
     this.state = {
       movies: [],
@@ -43,7 +43,7 @@ class Application extends Component {
     httpRequest.send();
   }
 
-  prepareSearchWord(searchCriterias) {
+  searchMovies(searchCriterias) {
     const url = 'http://www.omdbapi.com/?s=';
     const typePart = '&type=';
     const pagePart = '&page=';
@@ -65,7 +65,7 @@ class Application extends Component {
     });
   }
 
-  changePage() {
+  browseNextPage() {
     const url = 'http://www.omdbapi.com/?s=';
     const textInput = this.state.textInput;
     const typePart = '&type=';
@@ -79,7 +79,7 @@ class Application extends Component {
     });
   }
 
-  changeToPreviousPage() {
+  browsePreviousPage() {
     const url = 'http://www.omdbapi.com/?s=';
     const textInput = this.state.textInput;
     const typePart = '&type=';
@@ -100,15 +100,15 @@ class Application extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-7">
-              <SearchBar onSearching={this.prepareSearchWord} />
+              <SearchBar onSearching={this.searchMovies} />
               {this.state.isLoading && <LoadingBar/>}
               <MovieList
                 movies={this.state.movies}
                 onMovieClick={this.doDetailedSearch }
               />
               <Pager
-                onPreviousButtonClick={this.changeToPreviousPage}
-                onNextButtonClick={this.changePage}  
+                onPreviousButtonClick={this.browsePreviousPage}
+                onNextButtonClick={this.browseNextPage}  
               />
             </div>
             <MovieInfo movie={this.state.selectedMovie} />
