@@ -19,6 +19,7 @@ class Application extends Component {
     this.prepareSearchWord = this.prepareSearchWord.bind(this);
     this.doDetailedSearch = this.doDetailedSearch.bind(this);
     this.changePage = this.changePage.bind(this);
+    this.changeToPreviousPage = this.changeToPreviousPage.bind(this);
 
     this.state = {
       movies: [],
@@ -78,6 +79,20 @@ class Application extends Component {
     });
   }
 
+  changeToPreviousPage() {
+    const url = 'http://www.omdbapi.com/?s=';
+    const textInput = this.state.textInput;
+    const typePart = '&type=';
+    const pagePart = '&page=';
+    const completeURL = `${url}${textInput}${typePart}${'movie'}${pagePart}${this.state.selectedPage - 1}`;
+    this.fetchOMDbData(completeURL, (movies) => {
+      this.setState({
+        movies: movies.Search,
+        selectedPage: this.state.selectedPage - 1
+      });
+    });
+  }
+
   render() {
     return (
       <div>
@@ -91,7 +106,10 @@ class Application extends Component {
                 movies={this.state.movies}
                 onMovieClick={this.doDetailedSearch }
               />
-              <Pager onNextButtonClick={this.changePage} />
+              <Pager
+                onPreviousButtonClick={this.changeToPreviousPage}
+                onNextButtonClick={this.changePage}  
+              />
             </div>
             <MovieInfo movie={this.state.selectedMovie} />
           </div>

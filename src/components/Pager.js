@@ -6,8 +6,8 @@ const Pager = (props) => {
     return (
         <div>
             <ul className="pager">
-                
-                <li><a href="#" onClick={props.onNextButtonClick}>Next 10 titles</a></li>
+                <li><a href='#' onClick={props.onPreviousButtonClick}>Previous</a></li>
+                <li><a href="#" onClick={props.onNextButtonClick}>Next</a></li>
             </ul>
         </div>
     );
