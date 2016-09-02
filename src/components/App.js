@@ -107,6 +107,7 @@ class Application extends Component {
                 onMovieClick={this.doDetailedSearch }
               />
               <Pager
+                selectedPage={this.state.selectedPage}
                 onPreviousButtonClick={this.browsePreviousPage}
                 onNextButtonClick={this.browseNextPage}  
               />
