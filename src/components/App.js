@@ -100,21 +100,19 @@ class Application extends Component {
   }
 
   generateURL(object) {
-    const url = 'http://www.omdbapi.com/?';
-    let keyValuePairs = '';
-
+    let url = 'http://www.omdbapi.com/';
+    let counter = 0;
     for (const key in object) {
       if (object.hasOwnProperty(key)) {
-        let newKeyValuePair = key + '=' + object[key] + '&';
-        keyValuePairs = keyValuePairs + newKeyValuePair;
+        let newKeyValuePair = `${counter === 0 ? '?' : '&'}${key}=${object[key]}`;
+        url += newKeyValuePair;
       }
+      counter++;
     }
-    const completeUrl = `${url}${keyValuePairs}`; 
-    
-    return completeUrl;
+    return url;
   }
 
-  render() {   
+  render() { 
     return (
       <div>
         <Nav />
