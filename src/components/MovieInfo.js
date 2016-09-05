@@ -18,8 +18,8 @@ const MovieInfo = (props) => {
                     <p className="rate-of-movie">{movie.Rated}</p>
                     <p className="director-of-movie">{movie.Director}</p>
                     <p className="actors-of-movie">{movie.Actors}</p>
-                    <p><span className="imdb-rate-of-movie">{movie.imdbRating}</span></p>
-                    <p className="votes-of-movie">{movie.imdbVotes}</p>
+                    <p>IMDb Rank: <span className="imdb-rate-of-movie label label-info">{movie.imdbRating}</span></p>
+                    <p className="votes-of-movie">Votes in IMDb: {movie.imdbVotes}</p>
                     <p className="oscars-of-movie">{movie.Awards}</p>
                     <p className="plot-of-movie">{movie.Plot}</p>
                 </article>
