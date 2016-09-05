@@ -20,6 +20,7 @@ class Application extends Component {
     this.doDetailedSearch = this.doDetailedSearch.bind(this);
     this.browseNextPage = this.browseNextPage.bind(this);
     this.browsePreviousPage = this.browsePreviousPage.bind(this);
+    this.generateURL = this.generateURL.bind(this);
 
     this.state = {
       movies: [],
@@ -80,11 +81,11 @@ class Application extends Component {
   }
 
   browsePreviousPage() {
-    const url = 'http://www.omdbapi.com/?s=';
-    const textInput = this.state.textInput;
-    const typePart = '&type=';
-    const pagePart = '&page=';
-    const completeURL = `${url}${textInput}${typePart}${'movie'}${pagePart}${this.state.selectedPage - 1}`;
+    const completeURL = this.generateURL({
+      s: this.state.textInput,
+      page: this.state.selectedPage - 1,
+      type: 'movie'
+    });
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
         movies: movies.Search,
@@ -93,7 +94,15 @@ class Application extends Component {
     });
   }
 
-  render() {
+  generateURL(object) {
+    const url = 'http://www.omdbapi.com/?';
+    const completeUrl = `${url}${'s='}${object.s}${'&page='}${object.page}${'&type='}${object.type}`; 
+    
+    return completeUrl;
+  }
+
+  
+  render() {   
     return (
       <div>
         <Nav />
@@ -116,8 +125,11 @@ class Application extends Component {
           </div>
         </div>
       </div>
+      
     );
+    
   }
+
 }
 
 export default Application;
