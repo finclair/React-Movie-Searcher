@@ -26,7 +26,8 @@ class Application extends Component {
       movies: [],
       isLoading: false,
       selectedPage: 1,
-      textInput: ''
+      textInput: '',
+      selectedType: 'movie'
     };
   }
 
@@ -57,7 +58,8 @@ class Application extends Component {
       this.setState({
         movies: movies.Search,
         selectedPage: 1,
-        textInput: searchCriterias.input
+        textInput: searchCriterias.input,
+        selectedType: searchCriterias.searchType
       });
     });
   }
@@ -74,7 +76,7 @@ class Application extends Component {
     const completeURL = this.generateURL({
       s: this.state.textInput,
       page: this.state.selectedPage + 1,
-      type: 'movie'
+      type: this.state.selectedType
     });
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
@@ -88,7 +90,7 @@ class Application extends Component {
     const completeURL = this.generateURL({
       s: this.state.textInput,
       page: this.state.selectedPage - 1,
-      type: 'movie'
+      type: this.state.selectedType
     });
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
@@ -105,7 +107,6 @@ class Application extends Component {
     return completeUrl;
   }
 
-  
   render() {   
     return (
       <div>
