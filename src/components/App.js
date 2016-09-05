@@ -48,7 +48,11 @@ class Application extends Component {
     const url = 'http://www.omdbapi.com/?s=';
     const typePart = '&type=';
     const pagePart = '&page=';
-    const completeURL = `${url}${searchCriterias.input}${typePart}${searchCriterias.searchType}${pagePart}1`;
+    const completeURL = this.generateURL({
+      s: searchCriterias.input,
+      page: 1,
+      type: searchCriterias.searchType
+    });
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
         movies: movies.Search,
@@ -67,11 +71,11 @@ class Application extends Component {
   }
 
   browseNextPage() {
-    const url = 'http://www.omdbapi.com/?s=';
-    const textInput = this.state.textInput;
-    const typePart = '&type=';
-    const pagePart = '&page=';
-    const completeURL = `${url}${textInput}${typePart}${'movie'}${pagePart}${this.state.selectedPage + 1}`;
+    const completeURL = this.generateURL({
+      s: this.state.textInput,
+      page: this.state.selectedPage + 1,
+      type: 'movie'
+    });
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
         movies: movies.Search,
