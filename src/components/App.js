@@ -65,8 +65,10 @@ class Application extends Component {
   }
 
   doDetailedSearch(movie) {
-    const url = 'http://www.omdbapi.com/?plot=full&i=';
-    const completeUrl = `${url}${movie.imdbID}`;
+    const completeUrl = this.generateURL({
+      plot: 'full',
+      i: movie.imdbID
+    });
     this.fetchOMDbData(completeUrl, (selectedMovie) => {
       this.setState({selectedMovie: selectedMovie});
     });
@@ -110,9 +112,7 @@ class Application extends Component {
         keyValuePairs = keyValuePairs + newKeyValuePair;
       }
     }
-
     const completeUrl = `${url}${keyValuePairs}`; 
-
     console.log(keyValuePairs);
     return completeUrl;
   }
