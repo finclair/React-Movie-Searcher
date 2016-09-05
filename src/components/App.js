@@ -102,8 +102,18 @@ class Application extends Component {
 
   generateURL(object) {
     const url = 'http://www.omdbapi.com/?';
-    const completeUrl = `${url}${'s='}${object.s}${'&page='}${object.page}${'&type='}${object.type}`; 
-    
+    let keyValuePairs = '';
+
+    for (const key in object) {
+      if (object.hasOwnProperty(key)) {
+        let newKeyValuePair = key + '=' + object[key] + '&';
+        keyValuePairs = keyValuePairs + newKeyValuePair;
+      }
+    }
+
+    const completeUrl = `${url}${keyValuePairs}`; 
+
+    console.log(keyValuePairs);
     return completeUrl;
   }
 
