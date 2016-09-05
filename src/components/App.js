@@ -101,14 +101,12 @@ class Application extends Component {
 
   generateURL(object) {
     let url = 'http://www.omdbapi.com/';
-    let counter = 0;
-    for (const key in object) {
-      if (object.hasOwnProperty(key)) {
-        let newKeyValuePair = `${counter === 0 ? '?' : '&'}${key}=${object[key]}`;
-        url += newKeyValuePair;
+    Object.keys(object).forEach((key, index) => {
+       if (object.hasOwnProperty(key)) {
+        let getParameter = `${index === 0 ? '?' : '&'}${key}=${object[key]}`;
+        url += getParameter;
       }
-      counter++;
-    }
+    });
     return url;
   }
 
