@@ -46,9 +46,6 @@ class Application extends Component {
   }
 
   searchMovies(searchCriterias) {
-    const url = 'http://www.omdbapi.com/?s=';
-    const typePart = '&type=';
-    const pagePart = '&page=';
     const completeURL = this.generateURL({
       s: searchCriterias.input,
       page: 1,
@@ -113,7 +110,7 @@ class Application extends Component {
       }
     }
     const completeUrl = `${url}${keyValuePairs}`; 
-    console.log(keyValuePairs);
+    
     return completeUrl;
   }
 
