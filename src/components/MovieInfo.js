@@ -7,9 +7,18 @@ const MovieInfo = (props) => {
     }
 
     const movie = props.movie;
+    let labelColor = 'imdb-rate-of-movie label ';
+       if (movie.imdbRating >= 7.0) {
+            labelColor += 'label-success';
+        }
+        if (movie.imdbRating < 7.0 && movie.imdbRating > 5.5) {
+           labelColor += 'label-warning';
+        }
+        if (movie.imdbRating <= 5.5) {
+            labelColor += 'label-danger';
+        }            
 
     return (
-
         <div className="col-md-5">
             <div className="movie-info">
                 <article>
@@ -18,7 +27,7 @@ const MovieInfo = (props) => {
                     <p className="rate-of-movie">{movie.Rated}</p>
                     <p className="director-of-movie">{movie.Director}</p>
                     <p className="actors-of-movie">{movie.Actors}</p>
-                    <p>IMDb Rank: <span className="imdb-rate-of-movie label label-info">{movie.imdbRating}</span></p>
+                    <p>IMDb Rank: <span className={labelColor}>{movie.imdbRating}</span></p>
                     <p className="votes-of-movie">Votes in IMDb: {movie.imdbVotes}</p>
                     <p className="oscars-of-movie">{movie.Awards}</p>
                     <p className="plot-of-movie">{movie.Plot}</p>
