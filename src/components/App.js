@@ -110,7 +110,7 @@ class Application extends Component {
     return url;
   }
 
-  render() { 
+  render() {
     return (
       <div>
         <Nav />
@@ -127,7 +127,8 @@ class Application extends Component {
               <Pager
                 selectedPage={this.state.selectedPage}
                 onPreviousButtonClick={this.browsePreviousPage}
-                onNextButtonClick={this.browseNextPage}  
+                onNextButtonClick={this.browseNextPage}
+                movies={this.state.movies}
               />
             </div>
             <MovieInfo movie={this.state.selectedMovie} />
