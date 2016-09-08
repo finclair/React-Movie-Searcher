@@ -2,7 +2,7 @@ import React from 'react';
 
 const Pager = (props) => {
 
-    if(props.selectedPage <= 1) {
+    if (props.selectedPage <= 1) {
         if (props.movies.length === 10 || props.movies.length === 0) {
             return (
                 <div>
@@ -23,7 +23,6 @@ const Pager = (props) => {
             )
         }
     }
-  
     else {
         if (props.movies.length === 10) {
             return (
@@ -35,7 +34,6 @@ const Pager = (props) => {
                 </div>
             );
         }
-        
         else {
             return (
                 <div>
@@ -46,8 +44,6 @@ const Pager = (props) => {
                 </div>
             );
         }
-        
-    
     }
 }
 
