@@ -20,7 +20,6 @@ class Application extends Component {
     this.doDetailedSearch = this.doDetailedSearch.bind(this);
     this.browseNextPage = this.browseNextPage.bind(this);
     this.browsePreviousPage = this.browsePreviousPage.bind(this);
-    this.generateURL = this.generateURL.bind(this);
 
     this.state = {
       movies: [],
