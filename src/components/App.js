@@ -102,7 +102,7 @@ class Application extends Component {
   generateURL(object) {
     let url = 'http://www.omdbapi.com/';
     Object.keys(object).forEach((key, index) => {
-       if (object.hasOwnProperty(key)) {
+      if (object.hasOwnProperty(key)) {
         let getParameter = `${index === 0 ? '?' : '&'}${key}=${object[key]}`;
         url += getParameter;
       }
@@ -121,7 +121,8 @@ class Application extends Component {
               {this.state.isLoading && <LoadingBar/>}
               <MovieList
                 movies={this.state.movies}
-                onMovieClick={this.doDetailedSearch }
+                selectedMovie={this.state.selectedMovie}
+                onMovieClick={this.doDetailedSearch}
               />
               <Pager
                 selectedPage={this.state.selectedPage}
@@ -133,7 +134,6 @@ class Application extends Component {
           </div>
         </div>
       </div>
-      
     );
     
   }

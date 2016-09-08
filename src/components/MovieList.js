@@ -13,6 +13,7 @@ const MovieList = (props) => {
                 onMovieClick={props.onMovieClick}
                 key={movie.imdbID}
                 movie={movie}
+                selectedMovie={props.selectedMovie}
             />
         );
     });
