@@ -17,6 +17,7 @@ class Application extends Component {
     super(props);
 
     this.searchMovies = this.searchMovies.bind(this);
+    this.searchMoviesAutomated = this.searchMoviesAutomated.bind(this);
     this.doDetailedSearch = this.doDetailedSearch.bind(this);
     this.browseNextPage = this.browseNextPage.bind(this);
     this.browsePreviousPage = this.browsePreviousPage.bind(this);
@@ -50,6 +51,7 @@ class Application extends Component {
       page: 1,
       type: searchCriterias.searchType
     });
+    console.log(completeURL);
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
         movies: movies.Search,
@@ -59,6 +61,24 @@ class Application extends Component {
       });
     });
   }
+
+  searchMoviesAutomated(searchCriterias, input) {
+    const completeURL = this.generateURL({
+      s: input,
+      page: 1,
+      type: searchCriterias.searchType
+    });
+    console.log(completeURL);
+    this.fetchOMDbData(completeURL, (movies) => {
+      this.setState({
+        movies: movies.Search,
+        selectedPage: 1,
+        textInput: searchCriterias.input,
+        selectedType: searchCriterias.searchType
+      });
+    });
+  }
+
 
   doDetailedSearch(movie) {
     const completeUrl = this.generateURL({
@@ -116,7 +136,10 @@ class Application extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-7">
-              <SearchBar onSearching={this.searchMovies} />
+              <SearchBar 
+                onSearching={this.searchMovies} 
+                onAutomatedSearching={this.searchMoviesAutomated} 
+              />
               {this.state.isLoading && <LoadingBar/>}
               <MovieList
                 movies={this.state.movies}

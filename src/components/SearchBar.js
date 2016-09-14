@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 
-
-
 class SearchBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {input: '', searchType: 'movie'};
+        this.state = {input: '', searchType: 'movie', isChecked: false};
 
         this.onInputChange = this.onInputChange.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.onSearchTypeChange = this.onSearchTypeChange.bind(this)
-
+        this.onCheckBoxChange = this.onCheckBoxChange.bind(this);
     }
 
     render() {
@@ -35,13 +33,23 @@ class SearchBar extends Component {
                             </button>
                         </span>
                     </div>
+                    <input type="checkbox" checked={this.state.isChecked} onChange={this.onCheckBoxChange} />Use smart search<br />
                 </form>
             </div>
         );
     }
 
+    onCheckBoxChange(event) {
+        this.setState({isChecked: !this.state.isChecked});
+    }
+
     onInputChange(event) {
         this.setState({input: event.target.value});
+
+        if (this.state.isChecked == true && event.target.value.length > 2) {
+            this.props.onAutomatedSearching(this.state, event.target.value);
+        }
+        
     }
 
     onFormSubmit(event) {
