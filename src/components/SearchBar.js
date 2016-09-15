@@ -33,20 +33,20 @@ class SearchBar extends Component {
                             </button>
                         </span>
                     </div>
-                    <input type="checkbox" checked={this.state.isChecked} onChange={this.onCheckBoxChange} />Use smart search<br />
+                    <input type="checkbox" checked={this.state.isChecked} onChange={this.onCheckBoxChange} />Use smart search
                 </form>
             </div>
         );
     }
 
-    onCheckBoxChange(event) {
+    onCheckBoxChange() {
         this.setState({isChecked: !this.state.isChecked});
     }
 
     onInputChange(event) {
         this.setState({input: event.target.value});
 
-        if (this.state.isChecked == true && event.target.value.length > 2) {
+        if (this.state.isChecked && event.target.value.length > 2) {
             this.props.onAutomatedSearching(this.state, event.target.value);
         }
         

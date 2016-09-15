@@ -51,7 +51,6 @@ class Application extends Component {
       page: 1,
       type: searchCriterias.searchType
     });
-    console.log(completeURL);
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
         movies: movies.Search,
@@ -68,7 +67,6 @@ class Application extends Component {
       page: 1,
       type: searchCriterias.searchType
     });
-    console.log(completeURL);
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
         movies: movies.Search,
