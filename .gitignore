@@ -1,5 +1,5 @@
+build/
 /node_modules
-bundle.js
 npm-debug.log
 
 # IntelliJ
@@ -7,3 +7,6 @@ npm-debug.log
 /.idea
 
 .vagrant
+
+### Ansible ###
+*.retry
