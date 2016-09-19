@@ -14,3 +14,7 @@
 ### How to run tests
 
 `npm run test`
+
+### The path for the published project
+
+https://finclair.github.io/React-Movie-Searcher/
