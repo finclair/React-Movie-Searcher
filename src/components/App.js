@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 require('bootstrap/dist/css/bootstrap.min.css');
-require('font-awesome/css/font-awesome.min.css');
 require('../../style/style.css');
 
 import Nav from './Nav'
@@ -117,7 +116,7 @@ class Application extends Component {
   }
 
   generateURL(object) {
-    let url = 'http://www.omdbapi.com/';
+    let url = 'https://www.omdbapi.com/';
     Object.keys(object).forEach((key, index) => {
       if (object.hasOwnProperty(key)) {
         let getParameter = `${index === 0 ? '?' : '&'}${key}=${object[key]}`;
