@@ -23265,7 +23265,7 @@
 	    key: 'generateURL',
 	    value: function () {
 	      function generateURL(object) {
-	        var url = 'http://www.omdbapi.com/';
+	        var url = 'https://www.omdbapi.com/';
 	        Object.keys(object).forEach(function (key, index) {
 	          if (object.hasOwnProperty(key)) {
 	            var getParameter = '' + (index === 0 ? '?' : '&') + String(key) + '=' + String(object[key]);
