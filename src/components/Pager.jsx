@@ -49,7 +49,7 @@ Pager.propTypes = {
   movies: React.PropTypes.arrayOf(React.PropTypes.object),
   selectedPage: React.PropTypes.number,
   onNextButtonClick: React.PropTypes.func,
-  onPreviousButtonClick: React.propTypes.func,
+  onPreviousButtonClick: React.PropTypes.func,
 };
 
 

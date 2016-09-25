@@ -66,8 +66,8 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  onAutomatedSearching: React.propTypes.func,
-  onSearching: React.propTypes.func,
+  onAutomatedSearching: React.PropTypes.func,
+  onSearching: React.PropTypes.func,
 };
 
 export default SearchBar;
