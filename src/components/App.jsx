@@ -6,7 +6,6 @@ import MovieList from './MovieList';
 import MovieInfo from './MovieInfo';
 import Pager from './Pager';
 
-// require('bootstrap/dist/css/bootstrap.min.css');
 require('../../style/style.css');
 
 function generateURL(object) {

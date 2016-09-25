@@ -38,7 +38,7 @@ const MovieInfo = (props) => {
 };
 
 MovieInfo.propTypes = {
-  movie: React.PropTypes.object,
+  movie: React.PropTypes.shape({}),
 };
 
 export default MovieInfo;

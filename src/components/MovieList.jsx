@@ -24,7 +24,7 @@ const MovieList = (props) => {
 
 MovieList.propTypes = {
   movies: React.PropTypes.arrayOf(React.PropTypes.object),
-  selectedMovie: React.PropTypes.object,
+  selectedMovie: React.PropTypes.shape({}),
 };
 
 

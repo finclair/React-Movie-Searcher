@@ -19,9 +19,13 @@ const MovieListItem = (props) => {
 };
 
 MovieListItem.propTypes = {
-  movie: React.PropTypes.object,
+  movie: React.PropTypes.shape({
+    imdbID: React.PropTypes.string,
+  }),
   onMovieClick: React.PropTypes.func,
-  selectedMovie: React.PropTypes.object,
+  selectedMovie: React.PropTypes.shape({
+    imdbID: React.PropTypes.string,
+  }),
 };
 
 export default MovieListItem;
