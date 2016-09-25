@@ -11,7 +11,7 @@ const Pager = (props) => {
       return (
         <div>
           <ul className="pager">
-            <li><a href="#" onClick={props.onNextButtonClick}>Next</a></li>
+            <li><button onClick={props.onNextButtonClick}>Next</button></li>
           </ul>
         </div>
       );
@@ -19,7 +19,7 @@ const Pager = (props) => {
     return (
       <div>
         <ul className="pager">
-          <li><a href="#" onClick={props.onNextButtonClick}>Next</a></li>
+          <li><button onClick={props.onNextButtonClick}>Next</button></li>
         </ul>
         <h3>No more titles found..</h3>
       </div>
@@ -29,8 +29,8 @@ const Pager = (props) => {
     return (
       <div>
         <ul className="pager">
-          <li><a href="#" onClick={props.onPreviousButtonClick}>Previous</a></li>
-          <li><a href="#" onClick={props.onNextButtonClick}>Next</a></li>
+          <li><button onClick={props.onPreviousButtonClick}>Previous</button></li>
+          <li><button onClick={props.onNextButtonClick}>Next</button></li>
         </ul>
       </div>
     );
@@ -38,7 +38,7 @@ const Pager = (props) => {
   return (
     <div>
       <ul className="pager">
-        <li><a href="#" onClick={props.onPreviousButtonClick}>Previous</a></li>
+        <li><button onClick={props.onPreviousButtonClick}>Previous</button></li>
       </ul>
       <h3>No more titles found..</h3>
     </div>

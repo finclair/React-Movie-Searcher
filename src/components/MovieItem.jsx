@@ -12,9 +12,9 @@ const MovieListItem = (props) => {
   }
 
   return (
-    <a href="#" className={itemClass} onClick={() => onMovieClick(movie)}>{movie.Title}
+    <button className={itemClass} onClick={() => onMovieClick(movie)}>{movie.Title}
       <span className="badge">{movie.Year}</span>
-    </a>
+    </button>
   );
 };
 

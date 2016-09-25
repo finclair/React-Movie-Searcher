@@ -8,7 +8,7 @@ class SearchBar extends Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.onSearchTypeChange = this.onSearchTypeChange.bind(this)
+    this.onSearchTypeChange = this.onSearchTypeChange.bind(this);
     this.onCheckBoxChange = this.onCheckBoxChange.bind(this);
   }
 
@@ -71,5 +71,3 @@ SearchBar.propTypes = {
 };
 
 export default SearchBar;
-
-
