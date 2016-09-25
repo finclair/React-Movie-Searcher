@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
+import Nav from './Nav';
+import SearchBar from './SearchBar';
+import LoadingBar from './LoadingBar';
+import MovieList from './MovieList';
+import MovieInfo from './MovieInfo';
+import Pager from './Pager';
 
 require('bootstrap/dist/css/bootstrap.min.css');
 require('../../style/style.css');
 
-import Nav from './Nav'
-import SearchBar from './SearchBar';
-import LoadingBar from './LoadingBar';
-import MovieList from './MovieList';
-import MovieItem from './MovieItem';
-import MovieInfo from './MovieInfo';
-import Pager from './Pager';
+function generateURL(object) {
+  let url = 'https://www.omdbapi.com/';
+  Object.keys(object).forEach((key, index) => {
+    if ({}.hasOwnProperty.call(object, key)) {
+      const getParameter = `${index === 0 ? '?' : '&'}${key}=${object[key]}`;
+      url += getParameter;
+    }
+  });
+  return url;
+}
 
 class Application extends Component {
   constructor(props) {
@@ -26,17 +35,17 @@ class Application extends Component {
       isLoading: false,
       selectedPage: 1,
       textInput: '',
-      selectedType: 'movie'
+      selectedType: 'movie',
     };
   }
 
   fetchOMDbData(url, callback) {
-    this.setState({isLoading: true});
-    var httpRequest = new XMLHttpRequest();
+    this.setState({ isLoading: true });
+    const httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = () => {
       if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-        this.setState({isLoading: false});
-        var response = JSON.parse(httpRequest.responseText);
+        this.setState({ isLoading: false });
+        const response = JSON.parse(httpRequest.responseText);
         callback(response);
       }
     };
@@ -45,86 +54,76 @@ class Application extends Component {
   }
 
   searchMovies(searchCriterias) {
-    const completeURL = this.generateURL({
+    const completeURL = generateURL({
       s: searchCriterias.input,
       page: 1,
-      type: searchCriterias.searchType
+      type: searchCriterias.searchType,
     });
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
         movies: movies.Search,
         selectedPage: 1,
         textInput: searchCriterias.input,
-        selectedType: searchCriterias.searchType
+        selectedType: searchCriterias.searchType,
       });
     });
   }
 
   searchMoviesAutomated(searchCriterias, input) {
-    const completeURL = this.generateURL({
+    const completeURL = generateURL({
       s: input,
       page: 1,
-      type: searchCriterias.searchType
+      type: searchCriterias.searchType,
     });
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
         movies: movies.Search,
         selectedPage: 1,
         textInput: searchCriterias.input,
-        selectedType: searchCriterias.searchType
+        selectedType: searchCriterias.searchType,
       });
     });
   }
 
 
   doDetailedSearch(movie) {
-    const completeUrl = this.generateURL({
+    const completeUrl = generateURL({
       plot: 'full',
-      i: movie.imdbID
+      i: movie.imdbID,
     });
     this.fetchOMDbData(completeUrl, (selectedMovie) => {
-      this.setState({selectedMovie: selectedMovie});
+      this.setState({ selectedMovie });
     });
   }
 
   browseNextPage() {
-    const completeURL = this.generateURL({
+    const completeURL = generateURL({
       s: this.state.textInput,
       page: this.state.selectedPage + 1,
-      type: this.state.selectedType
+      type: this.state.selectedType,
     });
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
         movies: movies.Search,
-        selectedPage: this.state.selectedPage + 1
+        selectedPage: this.state.selectedPage + 1,
       });
     });
   }
 
   browsePreviousPage() {
-    const completeURL = this.generateURL({
+    const completeURL = generateURL({
       s: this.state.textInput,
       page: this.state.selectedPage - 1,
-      type: this.state.selectedType
+      type: this.state.selectedType,
     });
     this.fetchOMDbData(completeURL, (movies) => {
       this.setState({
         movies: movies.Search,
-        selectedPage: this.state.selectedPage - 1
+        selectedPage: this.state.selectedPage - 1,
       });
     });
   }
 
-  generateURL(object) {
-    let url = 'https://www.omdbapi.com/';
-    Object.keys(object).forEach((key, index) => {
-      if (object.hasOwnProperty(key)) {
-        let getParameter = `${index === 0 ? '?' : '&'}${key}=${object[key]}`;
-        url += getParameter;
-      }
-    });
-    return url;
-  }
 
   render() {
     return (
@@ -133,11 +132,11 @@ class Application extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-7">
-              <SearchBar 
-                onSearching={this.searchMovies} 
-                onAutomatedSearching={this.searchMoviesAutomated} 
+              <SearchBar
+                onSearching={this.searchMovies}
+                onAutomatedSearching={this.searchMoviesAutomated}
               />
-              {this.state.isLoading && <LoadingBar/>}
+              {this.state.isLoading && <LoadingBar />}
               <MovieList
                 movies={this.state.movies}
                 selectedMovie={this.state.selectedMovie}
@@ -155,7 +154,6 @@ class Application extends Component {
         </div>
       </div>
     );
-    
   }
 
 }
